@@ -9,6 +9,12 @@ class Location(models.Model):
 
     def save_location(self):
         self.save()
+    def delete_location(self):
+        self.delete()
+    
+    def update_location(self, update):
+        self.location = update
+        self.save()
 
     def __str__(self):
         return self.name
@@ -17,12 +23,25 @@ class Category(models.Model):
 
     def save_category(self):
         self.save()
+       
+
+    def delete_category(self):
+        self.delete()
+    
+    def update_category(self, update):
+        self.category = update
+        self.save()
+
+    @classmethod
+    def get_category_id(cls, id):
+        category = Category.objects.get(pk = id)
+        return category
 
     def __str__(self):
         return self.name
 
 class Image(models.Model):
-    image = models.ImageField(upload_to = 'images/',blank=False)
+    image = models.ImageField(upload_to = 'gallery/s',blank=False)
     name = models.CharField(max_length =30)
     description = models.CharField(max_length =60)
     location = models.ForeignKey(Location,blank=True)
@@ -30,22 +49,31 @@ class Image(models.Model):
 
     def save_image(self):
         self.save()
+    
 
     def __str__(self):
         return self.name
     class Meta:
         ordering = ['name']
     @classmethod
-    def one_image(cls,id):
-        images = Image.objects.all()
-        # location = cls.objects.filter(Image = images)
+    def get_image_by_id(cls,image_id):
+        images= Image.objects.get(id=image_id)
         return images
+    
     @classmethod
-    def filter_location(cls,location):
-        location = cls.objects.filter(Location = location)
-        return location
+    def search_image(cls,search_category):
+        category = Image.objects.filter(category__icontains=search_category)
+        return category
+    
+
     @classmethod
-    def search_by_category(cls,search_term):
-        category = cls.objects.filter(category__icontains=search_term)
-        return category     
+    def filter_by_location(cls, filter_location):
+        location = Image.objects.filter(location__id=filter_location)
+        return location   
+    
+    # @classmethod
+    # def get_image_by_id(cls,id):
+    #     images = cls.objects.filter(Location = location)
+
+
    

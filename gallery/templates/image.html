@@ -3,25 +3,25 @@
  {% block content %}
 
  <div class="container">
-    {%for image in all_images%}
+    
    <div class="row">
      <img src="{{image.image.url}}"  class="img-responsive" alt="">
    </div>
 
    <div class="row">
-     <h1 class="text-center">{{image.name}}</h1>
+     <h2>{{image.name}}</h2>
    </div>
 
    <div class="row">
-     <p>{{image.description}}</p>
+     <h3>Description:{{image.description}}</h3>
    </div>
 
    <div class="row">
-     <p>Location {{image.location}}</p>
-        <p>Location {{image.category}}</p>
+     <p>Location: {{image.location}}</p>
+        <p>Category: {{image.category}}</p>
    </div>
 
  </div>
- {%endfor%}
-
+ 
+ 
  {% endblock %}

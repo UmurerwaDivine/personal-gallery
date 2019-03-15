@@ -1,7 +1,14 @@
-h1{
+h1,h2,p{
     color:lightgray;
 }
 body{
     font-family: 'Sniglet', cursive;
     background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/itCjTBE/dark-motion-background-with-waves-and-squares-tech-video-animation-hd-1920x1080_4qcpq2t8e__F0000.png')
 }
+
+  img:hover{
+      /* transform: scale(1.5); */
+      opacity: 0.5;
+      
+      
+  }

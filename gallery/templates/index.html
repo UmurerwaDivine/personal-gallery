@@ -3,25 +3,15 @@
 
 <h1>Welcome To My Personal Gallery</h1>
 <div class="container">
-        {%for image in all_images%}
-       <div class="row">
-         <img src="{{image.image.url}}"  class="img-responsive" alt="">
-       </div>
+        {%for image in images%}
+        <div class="col-sm-6 col-md-3">
+         <a  href="image/{{image.id}}" href="image.html"><img src="{{image.image.url}}"  class="img-responsive" alt="" ></a>
+               
+                 
+        </div>
     
-       <div class="row">
-         <h1 class="text-center">{{image.name}}</h1>
-       </div>
+      
     
-       <div class="row">
-         <p>{{image.description}}</p>
-       </div>
-    
-       <div class="row">
-         <p>Location {{image.location}}</p>
-            <p>Location {{image.category}}</p>
-       </div>
-    
-     </div>
      {%endfor%}
     
 {%endblock%}

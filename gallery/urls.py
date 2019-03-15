@@ -6,9 +6,9 @@ from django.conf import settings
 
 
 urlpatterns=[
-    url('^$',views.one_image,name = 'image'),
+    url('^$',views.index,name = 'home'),
      url(r'^search/', views.search_results, name='search_results'),
-    #  url(r'',views.image,name ='image')
+   url(r'^image/(\d+)',views.get_image_by_id,name ='image')
 
    
     
