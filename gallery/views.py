@@ -21,7 +21,7 @@ def search_results(request):
         return render(request, 'templates/search.html',{"message":message})
 
 def get_image_by_id(request,image_id):
-    try:
+    try: 
         images = Image.objects.get(id = image_id)
     except DoesNotExist:
         raise Http404()
