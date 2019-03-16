@@ -9,16 +9,15 @@ def index(request):
 
 def search_results(request):
 
-    if 'category' in request.GET and request.GET["category"]:
-        search_term = request.GET.get("category")
-        searched_categories = Image.search_by_category(search_term)
+    if 'image' in request.GET and request.GET["image"]:
+        search_term = request.GET.get("image")
+        searched_images = Image.get_category_images(search_term)
         message = f"{search_term}"
 
-        return render(request, 'templates/search.html',{"message":message,"categories": searched_categories})
-
+        return render(request, 'search.html',{"message":message,"images": searched_images})
     else:
         message = "You haven't searched for any term"
-        return render(request, 'templates/search.html',{"message":message})
+        return render(request, 'search.html',{"message":message})
 
 def get_image_by_id(request,image_id):
     try: 
