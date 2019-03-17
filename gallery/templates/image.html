@@ -13,15 +13,37 @@
    </div>
 
    <div class="row">
+     <div class="well">
      <p>Description:{{image.description}}</p>
-   </div>
+   
 
-   <div class="row">
+   
      <p>Location: {{image.location}}</p>
         <p>Category: {{image.category}}</p>
+        </div>
    </div>
+   <input type="text" value="https://galleryper.herokuapp.com/image/{{images.id}}" id="myInput">
 
+   <!-- The button used to copy the text -->
+   <button class="btn btn-success" onclick="myFunction()">Copy Link </button>
+   <hr>
  </div>
+ <!--/.Content-->
+</div>
+
+<!--/.Card reveal-->
+</div>
+</div>
+<script>
+function myFunction() {
+var copyText = document.getElementById("myInput");
+copyText.select();
+document.execCommand("Copy");
+alert("Copied the link: " + copyText.value);
+}
+</script>
+
+
  
  
  {% endblock %}
