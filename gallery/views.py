@@ -15,9 +15,20 @@ def search_results(request):
 
         return render(request, 'search.html', {"message":message, "images":searched_images})
 
+    # el:
+    #     message = "Please input something in the search field"
+    #     return render(request, 'search.html', {'message':message})
+
+    if 'location' in request.GET and request.GET['location']:
+        search_term = request.GET.get('location')
+        searched_images = Image.search_by_location(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html', {"message":message, "images":searched_images})
+
     else:
         message = "Please input something in the search field"
-        return render(request, 'search.html', {'message':message})
+        return render(request, 'search.html', {'message':message})    
 
 def get_image_by_id(request,image_id):
     try: 

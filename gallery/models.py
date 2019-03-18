@@ -15,6 +15,10 @@ class Location(models.Model):
     def update_location(self, update):
         self.location = update
         self.save()
+    @classmethod
+    def get_location_id(cls, id):
+        location = Location.objects.get(pk = id)
+        return location
 
     def __str__(self):
         return self.name
@@ -60,19 +64,21 @@ class Image(models.Model):
         images= Image.objects.get(id=image_id)
         return images
     
-    @classmethod
-    def search_image(cls,search_category):
-        category = Image.objects.filter(category_icontains=search_category)
-        return category
+    # @classmethod
+    # def search_image(cls,search_category):
+    #     category = Image.objects.filter(category_icontains=search_category)
+    #     return category
     @classmethod
     def search_by_category(cls, search_input):
         images = cls.objects.filter(category__name__icontains=search_input)
         return images        
 
     @classmethod
-    def filter_by_location(cls, filter_location):
-        location = Image.objects.filter(location__id=filter_location)
-        return location   
+    def search_by_location(cls, search_term):
+        location = Location.objects.get(location_name=search_term)
+        images = cls.objects.filter(location__name__icontains=location)
+        return images        
+   
     
     # @classmethod
     # def get_image_by_id(cls,id):
